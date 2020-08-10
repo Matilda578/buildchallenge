@@ -144,4 +144,18 @@ and E.TourName = B.TourName
 INNER JOIN CLIENT C 
 ON C.ClientID = B.ClientID
 INNER JOIN TOUR T
-ON T.TourName = E.TourName
+ON T.TourName = E.TourName;
+
+Select *
+FROM CLIENT
+
+Select *
+FROM BOOKING
+
+Select *
+FROM TOUR
+
+SELECT Count(DateBooked)
+FROM BOOKING
+
+/* These tests indicate that the correct data is present. The linking between the tables is demonstrated in the initial queries.*/
