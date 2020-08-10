@@ -83,3 +83,65 @@ INSERT INTO BOOKING (ClientId, TourName, EventMonth, EventDay, EventYear, Paymen
 
 SELECT *
 FROM CLIENT
+
+
+SELECT B.TourName, E.TourName, T.TourName
+FROM BOOKING B, TOUR T, EVENT E
+INNER JOIN BOOKING
+ON E.TourName = B.TourName
+
+
+/*SELECT C.GivenName, C.Surname, B.TourName, T.Description, B.EventMonth*/
+
+SELECT C.GivenName, C.Surname, T.TourName, T.Description, E.EventYear,E.EventMonth,E.EventDay,B.DateBooked,E.EventFee
+FROM BOOKING B
+INNER JOIN EVENT E
+ON E.EventMonth = B.EventMonth 
+and E.EventDay = B.EventDay
+and E.EventYear = B.EventYear
+and E.TourName = B.TourName
+INNER JOIN CLIENT C 
+ON C.ClientID = B.ClientID
+INNER JOIN TOUR T
+ON T.TourName = E.TourName
+
+
+SELECT *
+From BOOKING B
+INNER JOIN EVENT E
+ON E.EventMonth = B.EventMonth 
+and E.EventDay = B.EventDay
+and E.EventYear = B.EventYear
+and E.TourName = B.TourName
+INNER JOIN CLIENT C 
+ON C.ClientID = B.ClientID
+INNER JOIN TOUR T
+ON T.TourName = E.TourName
+
+/*Query2*/
+
+SELECT COUNT(DateBooked), EventMonth, TourName
+FROM BOOKING
+GROUP BY EventMonth, TourName
+
+
+/*Query3*/
+
+SELECT ClientID, TourName, Payment
+From    BOOKING
+Where Payment > (Select AVG(Payment) FROM BOOKING);
+
+/*Query4*/
+
+CREATE VIEW [banana] AS
+SELECT C.GivenName, C.Surname, T.TourName, T.Description, E.EventYear,E.EventMonth,E.EventDay,B.DateBooked,E.EventFee
+FROM BOOKING B
+INNER JOIN EVENT E
+ON E.EventMonth = B.EventMonth 
+and E.EventDay = B.EventDay
+and E.EventYear = B.EventYear
+and E.TourName = B.TourName
+INNER JOIN CLIENT C 
+ON C.ClientID = B.ClientID
+INNER JOIN TOUR T
+ON T.TourName = E.TourName
