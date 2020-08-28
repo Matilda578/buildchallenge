@@ -2,12 +2,16 @@
 
 Event ( EventYear, EventMonth, EventDay,)
 PK (EventYear, EventMonth, EventDay)
+FK(TourName) REFERENCES TOUR(TourName)
 
 Tour ( TourName, Description)
 PK (TourName)
 
 Booking (DateBooked, Payment)
 PK (DateBooked)
+FK (TourName) REFERENCES TOUR(TourName)
+FK (ClientID) REFERENCES CLIENT(ClientID)
+FK (TourName, EventMonth, EventDay, EventYear) REFERENCES EVENT (TourName, EventMonth, EventDay, EventYear)
 
 Client (ClientID, Surname, GivenName, Gender)
 PK (ClientID) */
@@ -148,14 +152,24 @@ ON T.TourName = E.TourName;
 
 Select *
 FROM CLIENT
+/* This statement should show every client listed once with their details*/
+
 
 Select *
 FROM BOOKING
+/* This query will show each booking even mutliple for some clients and should show the total number of bookings in the system. 
+When compared with query 2 above the number of bookings per month should match*/
+
+
 
 Select *
 FROM TOUR
+/* When this query is executed the total number of tours and their details will be shown once*/
+
 
 SELECT Count(DateBooked)
 FROM BOOKING
+/* the total number of bookings per date will be displayed */
+
 
 /* These tests indicate that the correct data is present. The linking between the tables is demonstrated in the initial queries.*/
